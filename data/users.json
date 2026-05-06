@@ -22,5 +22,29 @@
     "password": "$2b$10$fALWyshXUd527.v7vcl.e.sCUpe6Lkqy1L6zJy3izmshCuIbpnTCe",
     "question": "petName",
     "passphrase": "$2b$10$fALWyshXUd527.v7vcl.e.t0rk6e7C/h38HeVUbbTgLkzxdCxuR.G"
+  },
+  {
+    "name": "alicia ",
+    "tel": "(52)  2185 9893",
+    "email": "aliciagr214@gmail.com",
+    "password": "$2b$10$yk.jq/pi.BLE3asrX3emw.CAApBhjEaIIXSBdhcDpdPNeF7hLkJtS",
+    "question": "favColor",
+    "passphrase": "$2b$10$yk.jq/pi.BLE3asrX3emw.HaIoOyveIL9QQCLTeTeVQDJ67YlcT4."
+  },
+  {
+    "name": "monica",
+    "tel": "(52)  2185 9893",
+    "email": "m@m.com",
+    "password": "$2b$10$wBQJTxeGISdWgY3nt33bA.7xG9G0JC1megsulxtgDHQSbjNeXIEYa",
+    "question": "birthYear",
+    "passphrase": "$2b$10$wBQJTxeGISdWgY3nt33bA.HMPWzrRp6lKuonpGSeXOgHkJh5j6jUi"
+  },
+  {
+    "name": "scar",
+    "tel": "(52) 5512345678",
+    "email": "s@s.com",
+    "password": "$2b$10$R3QwlAYrtoxo8NQ56ttwq.4f724ow92phroaDEyJV4Fy1j27EKOzG",
+    "question": "petName",
+    "passphrase": "$2b$10$R3QwlAYrtoxo8NQ56ttwq.Wv6N75BrrpOhNn20H1WCnaC8lRbf7Ym"
   }
 ]

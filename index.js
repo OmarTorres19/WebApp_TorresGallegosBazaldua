@@ -48,6 +48,10 @@ const port = 5000;
 //convertimos a app en un objeto con métodos .use() .get() .listen()
 const app = express() //Instancia de clase express -> Objeto app
 
+//Define el motro de plantillas (views) y la extensión de los archivos
+app.set("views", path.join(__dirname, "views"));
+//EJS es un motor de plantillas que permite generar HTML dinámico
+app.set("view engine", "ejs"); 
 
 //Transforma cuerpos JSON de tipo POST -> Objs JavaScript. Se ejecuta SIEMPRE en todos los requests
 app.use(express.json()); //Función Middleware incorporada de Express
@@ -64,7 +68,7 @@ app.use(express.urlencoded({ extended: true })); //extended:true - permite objet
 // cookie.httpOnly: la cookie no es accesible desde JavaScript del navegador (seguridad)
 app.use(session({
     secret: "bat-cave-secret-key-2024",
-    resave: false,
+    resave: false,//no re-guarda la session si no hubo cambios
     saveUninitialized: false,
     cookie: {
         maxAge: 1000 * 60 * 60, // 1 hora
