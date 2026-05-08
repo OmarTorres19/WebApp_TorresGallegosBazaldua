@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Arkham Dossier</title>
+    <link rel="stylesheet" href="/css/formStyle.css">
+    <style>
+        .dossier-card {
+            background: #1a1a1a;
+            border: 2px solid var(--border);
+            padding: 40px;
+            position: relative;
+        }
+
+        .dossier-grid {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 40px;
+            margin-top: 20px;
+        }
+
+        .photo-frame {
+            border: 10px solid #fff;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+            filter: grayscale(0.2);
+        }
+
+        .label {
+            color: var(--accent);
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            margin-top: 15px;
+        }
+
+        .value {
+            color: #fff;
+            font-family: var(--font-mono);
+            margin-bottom: 10px;
+        }
+
+        
+    </style>
+</head>
+
+<body class="error-page">
+    <main class="form-container" style="max-width: 900px; position: relative;">
+
+        <a href="/login" class="link-btn btn-logout-top"
+            style="position: absolute; top: -50px; right: 0; font-size: 0.7rem; padding: 5px 12px; border-color: var(--danger); color: var(--danger);">
+            Exit Cave
+        </a>
+
+        <div class="dossier-card">
+            <div class="confidential-stamp">CLASSIFIED</div>
+
+            <h1 id="v-alias"
+                style="color: var(--accent); margin-bottom: 20px; border-bottom: 2px solid var(--border); padding-bottom: 10px;">
+                LOADING...
+            </h1>
+
+            <div class="dossier-grid">
+                <div class="photo-side">
+                    <img id="v-img" src="" class="photo-frame"
+                        style="width: 100%; border: 8px solid #fff; filter: grayscale(0.2);">
+                    <p style="font-size: 0.6rem; text-align: center; margin-top: 5px; color: #888;">ARKHAM STATE
+                        HOSPITAL - DEPT OF PSYCHIATRY</p>
+                </div>
+
+                <div class="info-side">
+                    <div class="label">Subject Name</div>
+                    <div id="v-name" class="value">---</div>
+
+                    <div class="label">Threat Assessment</div>
+                    <div id="v-danger" class="value">---</div>
+
+                    <div class="label">Psychological Profile / Notes</div>
+                    <p id="v-desc"
+                        style="font-family: var(--font-mono); font-size: 0.85rem; line-height: 1.5; color: #ccc; background: rgba(0,0,0,0.3); padding: 10px; border-left: 3px solid var(--accent);">
+                    </p>
+
+                    <div style="margin-top: 25px; display: flex; gap: 10px;">
+                        <a href="/dashboard" class="link-btn" style="flex: 1; text-align: center;">
+                            « Close Dossier
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        async function init() {
+            const id = new URLSearchParams(window.location.search).get('id');
+            const res = await fetch('/api/criminals');
+            const data = await res.json();
+            const v = data.find(item => item.id == id);
+            if (v) {
+                document.getElementById('v-alias').innerText = v.alias;
+                document.getElementById('v-name').innerText = v.name;
+                document.getElementById('v-danger').innerText = v.dangerLevel;
+                document.getElementById('v-desc').innerText = v.description;
+                document.getElementById('v-img').src = v.image;
+            }
+        }
+        window.onload = init;
+    </script>
+</body>
+
+</html>

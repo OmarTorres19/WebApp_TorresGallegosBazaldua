@@ -1,0 +1,99 @@
+<%- include('../partials/header', { title: 'Join the Bat-Family' }) %>
+
+    <main class="form-container">
+    <div class="form-bat-logo" aria-hidden="true">
+        <svg viewBox="0 0 100 45" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+            <path d="M50,8 C45,8 40,14 36,20 C28,20 16,14 0,22 C12,28 20,38 30,36 C36,34 40,28 44,25 C46,24 48,23 50,23 C52,23 54,24 56,25 C60,28 64,34 70,36 C80,38 88,28 100,22 C84,14 72,20 64,20 C60,14 55,8 50,8 Z"/>
+        </svg>
+    </div>
+    <h2>Join the <strong>Bat-Family</strong></h2>
+
+    <!-- Indicador de progreso -->
+    <div class="step-indicator" id="stepIndicator" aria-label="Registration progress">
+        <div class="step-item active" id="step-dot-1">
+            <div class="step-dot">1</div>
+            <span class="step-label">Identity</span>
+        </div>
+        <div class="step-line"></div>
+        <div class="step-item" id="step-dot-2">
+            <div class="step-dot">2</div>
+            <span class="step-label">Security</span>
+        </div>
+    </div>
+
+    <form id="myForms" action="" enctype="application/x-www-form-urlencoded" novalidate>
+        <div id="step-1">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" pattern="[a-zA-Z\s]{3,50}" placeholder="Ej. Edgar Allan Poe"
+                required autofocus>
+            <span class="message" id="error-name"></span>
+
+            <label for="tel">Telephone:</label>
+            <input type="tel" id="tel" name="tel" pattern="^\(52\)[0-9\s \-]{10,13}$" required
+                placeholder="Ej. (52) 55 1234 5678" title="Format: (52) + 10 digits (spaces/hyphen optional)">
+            <span class="message" id="error-tel"></span>
+
+            <label for="email">Email address:</label>
+            <input type="text" id="email" name="email" pattern="^[a-zA-Z0-9._%+ \-]+@[a-zA-Z0-9. \-]+\.[a-zA-Z]{2,35}$"
+                placeholder="example@email.com" required>
+            <span class="message" id="error-email"></span>
+
+            <div class="btnContainer">
+                <button class="submit" type="submit">Next</button>
+                <button class="reset" type="reset">Clear fields</button>
+            </div>
+        </div>
+
+        <div id="step-2" class="hidden">
+            <label for="password">Create password:</label>
+            <div class="input-wrapper">
+                <input type="password" id="password" name="password" pattern="[a-zA-Z0-9]{8,}" required
+                    placeholder="At least 8 characters">
+                <button type="button" class="toggle-password" onclick="togglePwd('password')" aria-label="Toggle password visibility">👁</button>
+            </div>
+            <span class="message" id="error-password"></span>
+
+            <label for="confirmPassword">Confirm password:</label>
+            <div class="input-wrapper">
+                <input type="password" id="confirmPassword" name="confirmPassword" required>
+                <button type="button" class="toggle-password" onclick="togglePwd('confirmPassword')" aria-label="Toggle confirm password visibility">👁</button>
+            </div>
+            <span class="message" id="error-confirmPassword"></span>
+
+            <!-- Aquí estoy agregando las preguntas con la
+             condición de que al usuario se le dan tres opciones
+             ya dependiendo de esas preguntas el pone las respuestas-->
+
+              <label for="question">Security question:</label>
+                <select id="question" name="question" required>
+                    <option value="">Select a question...</option>
+                    <option value="favColor">Favorite color</option>
+                    <option value="petName">Pet's name</option>
+                    <option value="birthYear">Year of birth</option>
+                </select>
+                <span class="message" id="error-question"></span>
+
+            <label for="passphrase">Security Batpassphrase</label>
+            <input type="text" id="passphrase" name="passphrase" required
+                placeholder="Your secret answer">
+            <span class="message" id="error-passphrase"></span>
+
+            <div class="btnContainer">
+                <button class="submit" id="finalSubmit" type="submit">Finish Registration</button>
+                <button class="reset" id="backBtn" type="button">Back</button>
+            </div>
+        </div>
+
+<!-- Aquí meto la pregunta como eb varios formularios si ya tienes cuenta directo a login-->
+        <div class="footer-links">
+            <p>Already a member of the Bat-Family? 
+                <a href="/login" class="bat-link">Return to Base</a>
+            </p>
+
+
+    </form>
+
+    <script src="../js/toast.js"></script>
+    <script src="../js/validateFormB.js"></script>
+
+<%- include('../partials/footer', { scripts: ['/js/validateFormB.js'] }) %>

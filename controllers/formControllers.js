@@ -19,9 +19,12 @@ const MASTER_USER = {
     password: "iamthenight" // texto plano para pruebas
 }
 
+/*
+Todo esto lo cambio por un render para  las vistas
 export const showLanding = (req, res) => {
     res.sendFile(path.join(__dirname, "../public/html/home.html")); //Muestra home.html
-}
+}*/
+export const showLanding = (req, res) => res.render("pages/home");
 
 export const processLogin = async (req, res) => {
     const { email, password } = req.body;
@@ -112,24 +115,18 @@ export const getCriminals = (req, res) => {
     res.json(ARKHAM_DATABASE);
 };
 
-export const showDashboard = (req, res) => {
-    res.sendFile(path.join(__dirname, "../public/html/dashboard.html"));
-}
+export const showDashboard = (req, res) => res.render("pages/dashboard");
 
-export const showLogin = (req, res) => {
-    res.sendFile(path.join(__dirname, "../public/html/login.html")); //Muestra login.html
-}
+export const showLogin = (req, res) => res.render("pages/login");
 
 /*Agregare un almacenamiento en la memoria*/
 const usersByEmail = new Map();
 /**/
 
-export const showForm = (req, res) => {
-    res.sendFile(path.join(__dirname, "../public/html/formVIJS.html"));
-};
+export const showForm = (req, res) => res.render("pages/formVIJS");
 
 export const showUser = (req, res) => {
-    res.sendFile(path.join(__dirname, "../public/html/formUser.html"));
+    res.render("pages/formUser");
 };
 
 export const showValidate = async (req, res) => {
@@ -229,9 +226,7 @@ export const getSecurityQuestion = async (req, res) => {
     }
 };
 
-export const showForgotPassword = (req, res) => {
-    res.sendFile(path.join(__dirname, "../public/html/forgotPassword.html"));
-};
+export const showForgotPassword = (req, res) => res.render("pages/forgotPassword");
 
 // Devuelve los datos del usuario en sesión activa
 export const getMe = (req, res) => {
@@ -301,7 +296,5 @@ export const resetPassword = async (req, res) => {
     }
 };
 
-// Controlador para mostrar el dossier de un criminal específico
-export const showDossier = (req, res) => {
-    res.sendFile(path.join(__dirname, "../public/html/dossier.html"));
-};
+export const showDossier = (req, res) =>
+  res.render("pages/dossier", { criminalId: req.params.id });

@@ -1,0 +1,93 @@
+<%- include('../partials/header', { title: 'Batcave Dashboard' }) %>
+
+    <main class= "wide-container">
+        <header class="hero">
+            <h1>Gotham Most Wanted</h1>
+            <p>Accessing Arkham Asylum Criminal Files...</p>
+            <p class="welcome-msg" id="welcomeMsg"></p>
+            <a href="/logout" class="btn-logout">⬡ End Session</a>
+        </header>
+
+        <section id="criminal-grid" class="criminal-grid" aria-label="criminal dossiers">
+        </section>
+</main>
+    <script>
+        // Carga el nombre del usuario desde la sesión activa
+        async function loadWelcome() {
+            try {
+                const res = await fetch('/api/me');
+                const data = await res.json();
+                if (data.name) {
+                    document.getElementById('welcomeMsg').textContent =
+                        `> Welcome back, ${data.name}. Batcomputer access granted.`;
+                }
+            } catch (_) { /* silencioso — no crítico */ }
+        }
+
+        // Mapa de nivel de peligro → clase CSS
+        const dangerClass = {
+            'Extreme': 'chip-extreme',
+            'High':    'chip-high',
+            'Moderate':'chip-moderate'
+        };
+
+        // Skeleton mientras cargan los datos
+        function showSkeleton(grid) {
+            grid.innerHTML = [1, 2, 3].map(() => `
+                <div class="card skeleton-card">
+                    <div class="skeleton-media"></div>
+                    <div class="card-body" style="gap:14px">
+                        <div class="skeleton-line short"></div>
+                        <div class="skeleton-line medium"></div>
+                        <div class="skeleton-line long"></div>
+                        <div class="skeleton-line long"></div>
+                        <div class="skeleton-line short"></div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Carga las tarjetas de criminales
+        async function loadCriminals() {
+            const grid = document.getElementById('criminal-grid');
+
+            // Mostrar skeleton mientras se espera el fetch
+            showSkeleton(grid);
+
+            try {
+                const response = await fetch('/api/criminals');
+                const criminals = await response.json();
+
+                // Dibujamos cada tarjeta usando Template Literals
+                grid.innerHTML = criminals.map(villain => `
+                <a href="/dossier?id=${villain.id}" class="card-link">
+                <article class="card">
+                    <div class="card-media">
+                        <img src="${villain.image}" alt="${villain.alias}">
+                    </div>
+                    <div class="card-body">
+                        <span class="chip ${dangerClass[villain.dangerLevel] || ''}">
+                            ◈ DANGER: ${villain.dangerLevel}
+                        </span>
+                        <h3>${villain.alias}</h3>
+                        <p><strong>Real Name:</strong> ${villain.name}</p>
+  
+                        <p class="card-crime">⚑ Crime: ${villain.crime}</p>
+                    </div>
+                </article>
+                </a>
+            `).join('');
+
+            } catch (error) {
+                grid.innerHTML = `<p class="error">System Breach: Could not retrieve data.</p>`;
+            }
+        }
+
+        // Ejecutar ambas al cargar la página
+        window.onload = () => {
+            loadWelcome();
+            loadCriminals();
+        };
+    </script>
+
+<%- include('../partials/footer') %>

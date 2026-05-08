@@ -46,23 +46,16 @@ import { get404 } from "./controllers/errorController.js";
 // Estas dos líneas simulan __dirname
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const port = 5000;
+const port = 3000;
 
 //convertimos a app en un objeto con métodos .use() .get() .listen()
 const app = express() //Instancia de clase express -> Objeto app
 
-<<<<<<< HEAD
-//Define el motro de plantillas (views) y la extensión de los archivos
-app.set("views", path.join(__dirname, "views"));
-//EJS es un motor de plantillas que permite generar HTML dinámico
-app.set("view engine", "ejs"); 
-=======
 // Define moto de plantillas
 app.set('view engine', 'ejs'); //Motor de plantillas EJS
 
 //asocia carpeta de views para las vistas EJS
 app.set('views', path.join(__dirname, 'views')); //Ruta absoluta a carpeta de vistas
->>>>>>> Juan
 
 //Transforma cuerpos JSON de tipo POST -> Objs JavaScript. Se ejecuta SIEMPRE en todos los requests
 app.use(express.json()); //Función Middleware incorporada de Express
