@@ -22,5 +22,13 @@
     "password": "$2b$10$fALWyshXUd527.v7vcl.e.sCUpe6Lkqy1L6zJy3izmshCuIbpnTCe",
     "question": "petName",
     "passphrase": "$2b$10$fALWyshXUd527.v7vcl.e.t0rk6e7C/h38HeVUbbTgLkzxdCxuR.G"
+  },
+  {
+    "name": "joaquin",
+    "tel": "(52)5554019990",
+    "email": "joaquin@gmail.com",
+    "password": "$2b$10$GA9aXqJRCsEC0kVmq3y.Q.jaR3PjinEnsJnxqG02wLn4M5/qQqWdG",
+    "question": "favColor",
+    "passphrase": "$2b$10$GA9aXqJRCsEC0kVmq3y.Q.SCJ4sjHnSMeznR64jUbSC.G9YqnUa46"
   }
 ]

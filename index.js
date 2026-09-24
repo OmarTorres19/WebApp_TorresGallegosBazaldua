@@ -46,16 +46,16 @@ import { get404 } from "./controllers/errorController.js";
 // Estas dos líneas simulan __dirname
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const port = 5000;
+const port = 3000; //Puerto para el servidor HTTP
 
 //convertimos a app en un objeto con métodos .use() .get() .listen()
-const app = express() //Instancia de clase express -> Objeto app
+const app = express(); //Instancia de clase express -> Objeto app
 
 // Define moto de plantillas
-app.set('view engine', 'ejs'); //Motor de plantillas EJS
+app.set("view engine", "ejs"); //Motor de plantillas EJS
 
 //asocia carpeta de views para las vistas EJS
-app.set('views', path.join(__dirname, 'views')); //Ruta absoluta a carpeta de vistas
+app.set("views", path.join(__dirname, "views")); //Ruta absoluta a carpeta de vistas
 
 //Transforma cuerpos JSON de tipo POST -> Objs JavaScript. Se ejecuta SIEMPRE en todos los requests
 app.use(express.json()); //Función Middleware incorporada de Express
@@ -70,36 +70,32 @@ app.use(express.urlencoded({ extended: true })); //extended:true - permite objet
 // saveUninitialized: no crea session hasta que se guarde algo (ej: login exitoso)
 // cookie.maxAge:   duración de la sesión en ms → 1 hora
 // cookie.httpOnly: la cookie no es accesible desde JavaScript del navegador (seguridad)
-app.use(session({
+app.use(
+  session({
     secret: "bat-cave-secret-key-2024",
     resave: false,
     saveUninitialized: false,
     cookie: {
-        maxAge: 1000 * 60 * 60, // 1 hora
-        httpOnly: true
-    }
-}));
+      maxAge: 1000 * 60 * 60, // 1 hora
+      httpOnly: true,
+    },
+  }),
+);
 
 //                path.join(__dirname, "public") → /ruta/al/proyecto/public
-
-
-
 
 //asocia contenido estático. Se ejecuta ANTES que formRoutes
 app.use("/", express.static(path.join(__dirname, "public")));
 
-
 //Rutas
 app.use("/", formRoutes); // ./routes/formRoutes.js
 
-
-app.use(get404); 
+app.use(get404);
 
 //Asociamos puerto con el servidor
 app.listen(port, () => {
-   console.log(`Servidor ejecutándose en http://localhost:${port}`);
-})
-
+  console.log(`Servidor ejecutándose en http://localhost:${port}`);
+});
 
 //Flujo completo de una petición
 /*
@@ -112,7 +108,6 @@ app.listen(port, () => {
    d) formRoutes("/") → formRoutes.get('/contacto') ✓
 4. formRoutes responde → Navegador muestra página
 */
-
 
 //Orden Visual
 /*
