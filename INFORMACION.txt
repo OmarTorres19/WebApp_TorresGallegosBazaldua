@@ -1,4 +1,7 @@
-En este repositorio se encuentra la aplicación web correspondiente a la práctica 2. Los integrantes del equipo son:
+En este repositorio se encuentra la aplicación web correspondiente a la práctica 2 y práctica 3. La práctica 2 fue se realizó la AppWeb y para la práctica 3 se hicieron las modificaciones necesarias para la conexión con la base de datos. Los integrantes del equipo para las prácticas 2 y 3 son:
 Bazaldua Montoya José Juan
 Gallegos Lozano Karen Scarlett
 Torres Villanueva Omar
+
+El repositorio para acceder a la práctica 1 es el siguiente:
+https://github.com/Jormungandr1926/IngeWeb_Practica1_GallegosTorres.git
