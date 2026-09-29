@@ -1,0 +1,4 @@
+En este repositorio se encuentra la aplicación web correspondiente a la práctica 2. Los integrantes del equipo son:
+Bazaldua Montoya José Juan
+Gallegos Lozano Karen Scarlett
+Torres Villanueva Omar
